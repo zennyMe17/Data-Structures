@@ -88,11 +88,44 @@ void insert_at_pos()
    temp=newnode;
    }
 }
+
+void del_beginning()
+{
+    temp=head;
+    head=head->next;
+    head->prev=0;
+    free(temp);
+}
+
+void del_ending()
+{
+    temp=tail;
+    tail=tail->prev;
+    tail->next=0;
+    free(temp);
+}
+
+void delete_at_position()
+{
+    int i=1,pos;
+    temp=head;
+    printf("Enter the position to be deleted = ");
+    scanf("%d",&pos);
+    while(i<pos)
+    {
+        temp=temp->next;
+        i++;
+    }
+    temp->prev->next=temp->next;
+    temp->next->prev=temp->prev;
+    free(temp);
+}
+
 void main()
 {
     int ch;
     while(1){
-    printf("Enter the choice\n1. To create\n2. To display\n3. To insert at beginning\n4. To insert at ending\n5. To insert at any value\n6. To exit\n");
+    printf("Enter the choice\n1. To create\n2. To display\n3. To insert at beginning\n4. To insert at ending\n5. To insert at any value\n6. To delete at starting\n7. To delete at end\n8. To delete at any position\n9. To exit\n");
     scanf("%d",&ch);
     switch (ch)
     {
@@ -122,6 +155,21 @@ void main()
             break;
         }
         case 6:
+        {
+            del_beginning();
+            break;
+        }
+        case 7:
+        {
+            del_ending();
+            break;
+        }
+        case 8:
+        {
+            delete_at_position();
+            break;
+        }
+        case 9:
         {
             exit(0);
             break;
