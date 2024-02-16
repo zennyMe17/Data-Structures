@@ -68,10 +68,20 @@ void delete()
             {
                 head=head->next;
                 free(temp);
+                return;
             }
+            else if (temp->next == 0)
+            {
+                prev->next=0;
+                free(temp);
+                return;
+            }
+            else
+            {
             prev->next=temp->next;
             free (temp);
             return;
+            }
         }
         prev=temp;
         temp=temp->next;
